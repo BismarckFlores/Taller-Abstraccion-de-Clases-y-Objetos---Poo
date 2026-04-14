@@ -23,10 +23,27 @@ A partir del problema propuesto, se extraen las siguientes reglas de negocio que
   * Los recursos físicos y limitados que se alquilan (**Habitaciones**).
   * El proceso transaccional que separa una habitación por un tiempo determinado bajo ciertas condiciones (**Reservas**).
 
-## 4. Clases Relevantes Identificadas (Para modelado en Enterprise Architect)
-1. `Huesped`
-2. `Habitacion`
-3. `Reserva`
+## 4. Clases y Enumeradores Identificados
+Para mantener la integridad de los datos y evitar errores tipográficos, se definen 3 clases principales y 3 estructuras de enumeración (`Enum`).
+
+### Enumeradores (`<<enumeration>>`)
+* `TipoHabitacion`: INDIVIDUAL, DOBLE, SUITE
+* `EstadoHabitacion`: DISPONIBLE, OCUPADA, MANTENIMIENTO
+* `EstadoReserva`: PENDIENTE, CONFIRMADA, CANCELADA
+
+### Detalle de Clases (Atributos y Métodos)
+
+### Detalle de Clases (Atributos y Métodos)
+
+| Clase | Atributos (Variables) | Métodos (Comportamientos) |
+| :--- | :--- | :--- |
+| **Huesped** | `- idDocumento: String`<br>`- nombreCompleto: String`<br>`- email: String` | *(Sin métodos específicos de negocio, solo constructor y getters/setters implícitos)* |
+| **Habitacion** | `- numero: Integer`<br>`- tipo: TipoHabitacion`<br>`- precioPorNoche: Double`<br>`- estado: EstadoHabitacion` | `+ obtenerPrecioPorNoche(): Double`<br>`+ cambiarEstado(nuevoEstado: EstadoHabitacion): void` |
+| **Reserva** | `- idReserva: Integer`<br>`- fechaCheckIn: Date`<br>`- fechaCheckOut: Date`<br>`- estado: EstadoReserva`<br>`- costoTotal: Double` | `+ calcularCostoTotal(): void`<br>`+ cambiarEstado(nuevoEstado: EstadoReserva): void` |
+
+## 5. Relaciones entre las clases
+* Un **Huesped** *realiza* cero, una o múltiples **Reservas** (Asociación `1` a `0..*`).
+* Una **Reserva** *involucra* a una única **Habitacion** (Asociación `1` a `1`).
 
 ---
 ## 📂 Archivo del Modelo
