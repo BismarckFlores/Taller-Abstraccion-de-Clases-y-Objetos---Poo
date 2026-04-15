@@ -29,17 +29,15 @@ Para mantener la integridad de los datos y evitar errores tipográficos, se defi
 ### Enumeradores (`<<enumeration>>`)
 * `TipoHabitacion`: INDIVIDUAL, DOBLE, SUITE
 * `EstadoHabitacion`: DISPONIBLE, OCUPADA, MANTENIMIENTO
-* `EstadoReserva`: PENDIENTE, CONFIRMADA, CANCELADA
+* `EstadoReserva`: PENDIENTE, CONFIRMADA, CANCELADA, FINALIZADA
 
 ### Detalle de Clases (Atributos y Métodos)
 
-### Detalle de Clases (Atributos y Métodos)
-
-| Clase | Atributos (Variables) | Métodos (Comportamientos) |
-| :--- | :--- | :--- |
-| **Huesped** | `- idDocumento: String`<br>`- nombreCompleto: String`<br>`- email: String` | *(Sin métodos específicos de negocio, solo constructor y getters/setters implícitos)* |
-| **Habitacion** | `- numero: Integer`<br>`- tipo: TipoHabitacion`<br>`- precioPorNoche: Double`<br>`- estado: EstadoHabitacion` | `+ obtenerPrecioPorNoche(): Double`<br>`+ cambiarEstado(nuevoEstado: EstadoHabitacion): void` |
-| **Reserva** | `- idReserva: Integer`<br>`- fechaCheckIn: Date`<br>`- fechaCheckOut: Date`<br>`- estado: EstadoReserva`<br>`- costoTotal: Double` | `+ calcularCostoTotal(): void`<br>`+ cambiarEstado(nuevoEstado: EstadoReserva): void` |
+| Paquete        | Clase          | Atributos (Variables)                                                                                                                                                                 | Métodos (Comportamientos)                                                                                                                                      |
+|:---------------|:---------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`modelo`** | **Huesped** | `- id: String`<br>`- nombreCompleto: String`<br>`- email: String`                                                                                                                      | *(Sin métodos, solo constructor y getters/setters)* |
+| **`modelo`** | **Habitacion** | `- numero: Integer`<br>`- tipo: TipoHabitacion`<br>`- precioPorNoche: Double`<br>`- estado: EstadoHabitacion`                                                                         | *(Sin métodos, solo constructor y getters/setters)* |
+| **`servicio`** | **Reserva** | `- id: Integer`<br>`- huesped: Huesped`<br>`- habitacion: Habitacion`<br>`- fechaCheckIn: LocalDate`<br>`- fechaCheckOut: LocalDate`<br>`- estado: EstadoReserva`<br>`- costoTotal: Double` | `+ realizarReserva(): void`<br>`+ cancelarReserva(): void`<br>`+ confirmarReserva(): void`<br>`+ finalizarReserva(): void`<br>`- calcularCostoTotal(): double` |
 
 ## 5. Relaciones entre las clases
 * Un **Huesped** *realiza* cero, una o múltiples **Reservas** (Asociación `1` a `0..*`).
@@ -52,4 +50,4 @@ Para mantener la integridad de los datos y evitar errores tipográficos, se defi
 
 ## 📂 Código Fuente
 
-[👉 Código Fuente en Java](./Taller_Abstraccion/src)
+[👉 Código Fuente en Java](./Taller_Abstraccion/src/com/hotel/main/Main.java)
